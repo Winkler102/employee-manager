@@ -1,4 +1,6 @@
-const { mainMenu, searchEmployee, addDepartment, addRole, addEmployee } = require('./utils/prompts.js');
+const { mainMenu, searchEmployee } = require('./utils/prompts.js');
+const { addDepartment, addRole, addEmployee } = require('./utils/addprompts');
+const { updateRole, updateManager } = require('./utils/updateprompts');
 
 const handleSelection = function (menu) {
     console.log(menu.selection);
