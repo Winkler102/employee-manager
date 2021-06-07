@@ -11,4 +11,5 @@ VALUES
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES
     (321, 'John', 'Doe', 1, NULL),
-    (123, 'Lawn', 'Joe', 2, 321);
+    (123, 'Lawn', 'Joe', 2, 321),
+    (456, 'Mawn', 'Moe', 1, 123);

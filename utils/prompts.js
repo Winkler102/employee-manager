@@ -18,7 +18,8 @@ const mainMenu = function () {
             'Update an employee manager',
             'Delete a department',
             'Delete a role',
-            'Delete an employee'
+            'Delete an employee',
+            'EXIT'
         ]
     });
 };
