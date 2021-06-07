@@ -19,6 +19,8 @@ const updateRole = function (employeeArray, roleArray) {
 };
 
 const updateManager = function (employeeArray) {
+    let employee = '';
+    let manager = '';
     inquirer.prompt([
         {
             type: 'list',
@@ -27,14 +29,17 @@ const updateManager = function (employeeArray) {
             choices: employeeArray
         }
     ]).then(selectedEmployee => {
+        employee = selectedEmployee.employee;
         const managerArray = employeeArray.filter(employee => employee != selectedEmployee.employee)
-        inquirer.prompt({
+        manager = inquirer.prompt({
             type: 'list',
-            name: 'employee',
+            name: 'manager',
             message: 'Who is their new manager?',
             choices: managerArray
-        });
-    })
+        }).then(selectedManager => {
+            manager = selectedManager.manager;
+        })
+    });
 };
 
 module.exports = { updateRole, updateManager }
