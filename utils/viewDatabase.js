@@ -156,4 +156,20 @@ async function employeeRoleSearch(role) {
     return rows;
 };
 
-module.exports = { viewDepartments, viewRoles, viewEmployees, employeeList, employeeManagerSearch, departmentList, employeeDeparmentSearch, roleList, employeeRoleSearch }
+async function budget(department) {
+    const mysql = require('mysql2/promise');
+    const sql = `SELECT SUM(role.salary) AS Budget from employee JOIN role ON employee.role_id=role.id JOIN department ON role.department_id=department.id WHERE department.name=?`;
+    const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'open',
+        database: 'employeesManage'
+    });
+
+    [rows, fields] = await connection.execute(sql, [department]);
+
+    connection.end()
+    return rows;
+};
+
+module.exports = { viewDepartments, viewRoles, viewEmployees, employeeList, employeeManagerSearch, departmentList, employeeDeparmentSearch, roleList, employeeRoleSearch, budget }

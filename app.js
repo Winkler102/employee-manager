@@ -1,9 +1,9 @@
 const cTable = require('console.table');
-const { mainMenu, searchEmployee, searchDepartment, searchRole, searchManager } = require('./utils/prompts.js');
+const { mainMenu, searchEmployee, searchDepartment, searchRole, searchManager, displayBudget } = require('./utils/prompts.js');
 const { addDepartment, addRole, addEmployee } = require('./utils/addprompts');
 const { updateRole, updateManager } = require('./utils/updateprompts');
 const { deleteDepartment, deleteRole, deleteEmployee } = require('./utils/deleteprompts');
-const { viewDepartments, viewRoles, viewEmployees, employeeList } = require('./utils/viewDatabase');
+const { viewDepartments, viewRoles, viewEmployees, budget } = require('./utils/viewDatabase');
 
 const handleSelection = function (menu) {
     switch (menu.selection) {
@@ -56,7 +56,9 @@ const handleSelection = function (menu) {
                 });
             break;
         case 'View total utilized budget of a department':
-            console.log('4');
+            displayBudget().then(() => {
+                setTimeout(startMenu, 50);
+            });
             break;
         case 'Add a department':
             console.log('5');

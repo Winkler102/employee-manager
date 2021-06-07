@@ -1,6 +1,6 @@
 const { registerPrompt } = require('inquirer');
 const inquirer = require('inquirer');
-const { employeeList, employeeManagerSearch, departmentList, employeeDeparmentSearch, roleList, employeeRoleSearch } = require('./viewDatabase');
+const { employeeList, employeeManagerSearch, departmentList, employeeDeparmentSearch, roleList, employeeRoleSearch, budget } = require('./viewDatabase');
 const cTable = require('console.table');
 
 const mainMenu = function () {
@@ -97,4 +97,23 @@ const searchManager = function () {
         });
 };
 
-module.exports = { mainMenu, searchEmployee, searchDepartment, searchRole, searchManager };
+const displayBudget = function () {
+    return departmentList()
+        .then(array => {
+            return inquirer.prompt({
+                type: 'list',
+                name: 'searchDeparment',
+                message: 'Select a department:',
+                choices: array
+            });
+        }).then(answer => {
+            budget(answer.searchDeparment)
+                .then(rows => {
+                    console.log('   ');
+                    console.table(rows)
+                    console.log('   ');
+                });
+        });
+};
+
+module.exports = { mainMenu, searchEmployee, searchDepartment, searchRole, searchManager, displayBudget };

@@ -6,7 +6,7 @@ VALUES
 INSERT INTO role (id, title, salary, department_id)
 VALUES
     (1, 'Manager', 1.01, 6),
-    (2, 'Tacolord', 112365.02, 5);
+    (2, 'Tacolord', 10.01, 5);
 
 INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
 VALUES
