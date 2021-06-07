@@ -46,4 +46,20 @@ async function viewEmployees() {
     return rows;
 };
 
-module.exports = { viewDepartments, viewRoles, viewEmployees }
+async function employeeList() {
+    const mysql = require('mysql2/promise');
+    const sql = `SELECT CONCAT(employee.last_name, ', ', employee.first_name) AS Name FROM employee`;
+    const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'open',
+        database: 'employeesManage'
+    });
+
+    [rows, fields] = await connection.execute(sql);
+
+    connection.end()
+    return rows;
+};
+
+module.exports = { viewDepartments, viewRoles, viewEmployees, employeeList }

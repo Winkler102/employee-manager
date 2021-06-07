@@ -3,7 +3,7 @@ const { mainMenu, searchEmployee } = require('./utils/prompts.js');
 const { addDepartment, addRole, addEmployee } = require('./utils/addprompts');
 const { updateRole, updateManager } = require('./utils/updateprompts');
 const { deleteDepartment, deleteRole, deleteEmployee } = require('./utils/deleteprompts');
-const { viewDepartments, viewRoles, viewEmployees } = require('./utils/viewDatabase');
+const { viewDepartments, viewRoles, viewEmployees, employeeList } = require('./utils/viewDatabase');
 
 const handleSelection = function (menu) {
     switch (menu.selection) {
@@ -41,6 +41,7 @@ const handleSelection = function (menu) {
                         case 'Search all employees by role':
                             break;
                         case 'Search all employees by manager':
+                            console.log(employeeList);
                             break;
                         default: break;
                     };

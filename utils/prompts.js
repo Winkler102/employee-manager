@@ -38,4 +38,31 @@ const searchEmployee = function () {
     });
 };
 
+const searchDepartment = function (departmentArray) {
+    return inquirer.prompt({
+        type: 'list',
+        name: 'searchDeparment',
+        message: 'Select a department:',
+        choices: [departmentArray]
+    });
+};
+
+const searchRole = function (roleArray) {
+    return inquirer.prompt({
+        type: 'list',
+        name: 'searchRole',
+        message: 'Select a role:',
+        choices: [roleArray]
+    });
+};
+
+const searchDepartment = function (memployeeArray) {
+    return inquirer.prompt({
+        type: 'list',
+        name: 'searchManager',
+        message: 'Select a manager:',
+        choices: [memployeeArray]
+    });
+};
+
 module.exports = { mainMenu, searchEmployee };
