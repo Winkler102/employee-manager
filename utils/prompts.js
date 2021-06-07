@@ -1,5 +1,7 @@
 const { registerPrompt } = require('inquirer');
 const inquirer = require('inquirer');
+const { employeeList, employeeManagerSearch, departmentList, employeeDeparmentSearch, roleList, employeeRoleSearch } = require('./viewDatabase');
+const cTable = require('console.table');
 
 const mainMenu = function () {
     return inquirer.prompt({
@@ -38,31 +40,61 @@ const searchEmployee = function () {
     });
 };
 
-const searchDepartment = function (departmentArray) {
-    return inquirer.prompt({
-        type: 'list',
-        name: 'searchDeparment',
-        message: 'Select a department:',
-        choices: [departmentArray]
-    });
+const searchDepartment = function () {
+    return departmentList()
+        .then(array => {
+            return inquirer.prompt({
+                type: 'list',
+                name: 'searchDeparment',
+                message: 'Select a department:',
+                choices: array
+            });
+        }).then(answer => {
+            employeeDeparmentSearch(answer.searchDeparment)
+                .then(rows => {
+                    console.log('   ');
+                    console.table(rows)
+                    console.log('   ');
+                });
+        });
 };
 
-const searchRole = function (roleArray) {
-    return inquirer.prompt({
-        type: 'list',
-        name: 'searchRole',
-        message: 'Select a role:',
-        choices: [roleArray]
-    });
+const searchRole = function () {
+    return roleList().then(array => {
+        return inquirer.prompt({
+            type: 'list',
+            name: 'searchRole',
+            message: 'Select a role:',
+            choices: array
+        });
+    })
+        .then(answer => {
+            employeeRoleSearch(answer.searchRole)
+                .then(rows => {
+                    console.log('   ');
+                    console.table(rows)
+                    console.log('   ');
+                });
+        });
 };
 
-const searchDepartment = function (memployeeArray) {
-    return inquirer.prompt({
-        type: 'list',
-        name: 'searchManager',
-        message: 'Select a manager:',
-        choices: [memployeeArray]
-    });
+const searchManager = function () {
+    return employeeList().then(array => {
+        return inquirer.prompt({
+            type: 'list',
+            name: 'searchManager',
+            message: 'Select a manager:',
+            choices: array
+        });
+    })
+        .then(answer => {
+            employeeManagerSearch(answer.searchManager)
+                .then(rows => {
+                    console.log('   ');
+                    console.table(rows)
+                    console.log('   ');
+                });
+        });
 };
 
-module.exports = { mainMenu, searchEmployee };
+module.exports = { mainMenu, searchEmployee, searchDepartment, searchRole, searchManager };

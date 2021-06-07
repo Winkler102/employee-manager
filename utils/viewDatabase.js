@@ -59,7 +59,101 @@ async function employeeList() {
     [rows, fields] = await connection.execute(sql);
 
     connection.end()
+    let array = [];
+    rows.forEach(element => {
+        array.push(element.Name)
+    });
+    return array;
+};
+
+async function employeeManagerSearch(manager) {
+    const mysql = require('mysql2/promise');
+    const sql = `SELECT e.id AS ID, CONCAT(e.last_name, ', ', e.first_name) AS Name, department.name AS Deparment, role.title AS Role, role.salary AS Salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager FROM employee e JOIN role ON e.role_id=role.id JOIN department ON role.department_id=department.id JOIN employee m on e.manager_id=m.id WHERE CONCAT(m.last_name, ', ', m.first_name)=?`;
+    const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'open',
+        database: 'employeesManage'
+    });
+
+    [rows, fields] = await connection.execute(sql, [manager]);
+
+    connection.end()
     return rows;
 };
 
-module.exports = { viewDepartments, viewRoles, viewEmployees, employeeList }
+async function departmentList() {
+    const mysql = require('mysql2/promise');
+    const sql = `SELECT department.name AS Department FROM department`;
+    const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'open',
+        database: 'employeesManage'
+    });
+
+    [rows, fields] = await connection.execute(sql);
+
+    connection.end()
+    let array = [];
+    rows.forEach(element => {
+        array.push(element.Department)
+    });
+
+    return array;
+}
+
+async function employeeDeparmentSearch(department) {
+    const mysql = require('mysql2/promise');
+    const sql = `SELECT e.id AS ID, CONCAT(e.last_name, ', ', e.first_name) AS Name, department.name AS Deparment, role.title AS Role, role.salary AS Salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager FROM employee e JOIN role ON e.role_id=role.id JOIN department ON role.department_id=department.id JOIN employee m on e.manager_id=m.id WHERE department.name=?`;
+    const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'open',
+        database: 'employeesManage'
+    });
+
+    [rows, fields] = await connection.execute(sql, [department]);
+
+    connection.end()
+    return rows;
+};
+
+async function roleList() {
+    const mysql = require('mysql2/promise');
+    const sql = `SELECT role.title AS Role FROM role`;
+    const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'open',
+        database: 'employeesManage'
+    });
+
+    [rows, fields] = await connection.execute(sql);
+
+    connection.end()
+    let array = [];
+    rows.forEach(element => {
+        array.push(element.Role)
+    });
+
+    return array;
+}
+
+async function employeeRoleSearch(role) {
+    const mysql = require('mysql2/promise');
+    const sql = `SELECT e.id AS ID, CONCAT(e.last_name, ', ', e.first_name) AS Name, department.name AS Deparment, role.title AS Role, role.salary AS Salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager FROM employee e JOIN role ON e.role_id=role.id JOIN department ON role.department_id=department.id JOIN employee m on e.manager_id=m.id WHERE role.title=?`;
+    const connection = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'open',
+        database: 'employeesManage'
+    });
+
+    [rows, fields] = await connection.execute(sql, [role]);
+
+    connection.end()
+    return rows;
+};
+
+module.exports = { viewDepartments, viewRoles, viewEmployees, employeeList, employeeManagerSearch, departmentList, employeeDeparmentSearch, roleList, employeeRoleSearch }
