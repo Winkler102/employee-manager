@@ -76,10 +76,14 @@ const handleSelection = function (menu) {
             });
             break;
         case 'Update an employee role':
-            console.log('8');
+            updateRole().then(() => {
+                setTimeout(startMenu, 50);
+            });
             break;
         case 'Update an employee manager':
-            console.log('9');
+            updateManager().then(() => {
+                setTimeout(startMenu, 50);
+            });
             break;
         case 'Delete a department':
             console.log('10');

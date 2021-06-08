@@ -32,7 +32,7 @@ async function viewRoles() {
 
 async function viewEmployees() {
     const mysql = require('mysql2/promise');
-    const sql = `SELECT e.id AS ID, CONCAT(e.last_name, ', ', e.first_name) AS Name, department.name AS Deparment, role.title AS Role, role.salary AS Salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager FROM employee e JOIN role ON e.role_id=role.id JOIN department ON role.department_id=department.id JOIN employee m on e.manager_id=m.id`;
+    const sql = `SELECT e.id AS ID, CONCAT(e.last_name, ', ', e.first_name) AS Name, department.name AS Deparment, role.title AS Role, role.salary AS Salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager FROM employee e JOIN role ON e.role_id=role.id JOIN department ON role.department_id=department.id JOIN employee m on e.manager_id=m.id ORDER BY e.id ASC`;
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -48,7 +48,7 @@ async function viewEmployees() {
 
 async function employeeList() {
     const mysql = require('mysql2/promise');
-    const sql = `SELECT CONCAT(employee.last_name, ', ', employee.first_name) AS Name, employee.id as ID FROM employee`;
+    const sql = `SELECT CONCAT(employee.last_name, ', ', employee.first_name) AS Name, employee.id as ID FROM employee ORDER BY employee.id ASC`;
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -71,7 +71,7 @@ async function employeeList() {
 
 async function employeeManagerSearch(manager) {
     const mysql = require('mysql2/promise');
-    const sql = `SELECT e.id AS ID, CONCAT(e.last_name, ', ', e.first_name) AS Name, department.name AS Deparment, role.title AS Role, role.salary AS Salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager FROM employee e JOIN role ON e.role_id=role.id JOIN department ON role.department_id=department.id JOIN employee m on e.manager_id=m.id WHERE CONCAT(m.last_name, ', ', m.first_name)=?`;
+    const sql = `SELECT e.id AS ID, CONCAT(e.last_name, ', ', e.first_name) AS Name, department.name AS Deparment, role.title AS Role, role.salary AS Salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager FROM employee e JOIN role ON e.role_id=role.id JOIN department ON role.department_id=department.id JOIN employee m on e.manager_id=m.id WHERE CONCAT(m.last_name, ', ', m.first_name)=? ORDER BY e.id ASC`;
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -110,7 +110,7 @@ async function departmentList() {
 
 async function employeeDeparmentSearch(department) {
     const mysql = require('mysql2/promise');
-    const sql = `SELECT e.id AS ID, CONCAT(e.last_name, ', ', e.first_name) AS Name, department.name AS Deparment, role.title AS Role, role.salary AS Salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager FROM employee e JOIN role ON e.role_id=role.id JOIN department ON role.department_id=department.id JOIN employee m on e.manager_id=m.id WHERE department.name=?`;
+    const sql = `SELECT e.id AS ID, CONCAT(e.last_name, ', ', e.first_name) AS Name, department.name AS Deparment, role.title AS Role, role.salary AS Salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager FROM employee e JOIN role ON e.role_id=role.id JOIN department ON role.department_id=department.id JOIN employee m on e.manager_id=m.id WHERE department.name=? ORDER BY e.id ASC`;
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -149,7 +149,7 @@ async function roleList() {
 
 async function employeeRoleSearch(role) {
     const mysql = require('mysql2/promise');
-    const sql = `SELECT e.id AS ID, CONCAT(e.last_name, ', ', e.first_name) AS Name, department.name AS Deparment, role.title AS Role, role.salary AS Salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager FROM employee e JOIN role ON e.role_id=role.id JOIN department ON role.department_id=department.id JOIN employee m on e.manager_id=m.id WHERE role.title=?`;
+    const sql = `SELECT e.id AS ID, CONCAT(e.last_name, ', ', e.first_name) AS Name, department.name AS Deparment, role.title AS Role, role.salary AS Salary, CONCAT(m.last_name, ', ', m.first_name) AS Manager FROM employee e JOIN role ON e.role_id=role.id JOIN department ON role.department_id=department.id JOIN employee m on e.manager_id=m.id WHERE role.title=? ORDER BY e.id ASC`;
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
