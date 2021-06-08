@@ -71,7 +71,9 @@ const handleSelection = function (menu) {
             });
             break;
         case 'Add an employee':
-            console.log('7');
+            addEmployee().then(() => {
+                setTimeout(startMenu, 50);
+            });
             break;
         case 'Update an employee role':
             console.log('8');

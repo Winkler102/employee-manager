@@ -41,30 +41,47 @@ const addRole = function () {
 };
 
 const addEmployee = function () {
-    return inquirer.prompt([
-        {
-            type: 'input',
-            name: 'firstName',
-            message: 'What is the first name of the new employee?'
-        },
-        {
-            type: 'input',
-            name: 'lastName',
-            message: 'What is the last name of the new employee?'
-        },
-        {
-            type: 'list',
-            name: 'role',
-            message: "What is the employee's role?",
-            choices: roleArray
-        },
-        {
-            type: 'number',
-            name: 'manager',
-            message: "Who is the employee's manager?",
-            choices: employeeArray
-        }
-    ]);
+    let roleArray = [];
+    let managerArray = [];
+    return roleList()
+        .then(array => {
+            array.forEach(element => {
+                roleArray.push(element);
+            })
+        })
+        .then(employeeList)
+        .then(array => {
+            array.forEach(element => {
+                managerArray.push(element)
+            })
+            return inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'firstName',
+                    message: 'What is the first name of the new employee?'
+                },
+                {
+                    type: 'input',
+                    name: 'lastName',
+                    message: 'What is the last name of the new employee?'
+                },
+                {
+                    type: 'list',
+                    name: 'role',
+                    message: "What is the employee's role?",
+                    choices: roleArray
+                },
+                {
+                    type: 'list',
+                    name: 'manager',
+                    message: "Who is the employee's manager?",
+                    choices: managerArray
+                }
+            ]);
+        })
+        .then(answers => {
+            addEmployeedb(answers);
+        });
 };
 
 module.exports = { addDepartment, addRole, addEmployee };

@@ -65,11 +65,15 @@ const searchDepartment = function () {
 
 const searchRole = function () {
     return roleList().then(array => {
+        const options = [];
+        array.forEach(element => {
+            options.push(element.name);
+        });
         return inquirer.prompt({
             type: 'list',
             name: 'searchRole',
             message: 'Select a role:',
-            choices: array
+            choices: options
         });
     })
         .then(answer => {
@@ -84,11 +88,15 @@ const searchRole = function () {
 
 const searchManager = function () {
     return employeeList().then(array => {
+        const options = [];
+        array.forEach(element => {
+            options.push(element.name);
+        });
         return inquirer.prompt({
             type: 'list',
             name: 'searchManager',
             message: 'Select a manager:',
-            choices: array
+            choices: options
         });
     })
         .then(answer => {

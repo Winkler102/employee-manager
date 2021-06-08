@@ -48,7 +48,7 @@ async function viewEmployees() {
 
 async function employeeList() {
     const mysql = require('mysql2/promise');
-    const sql = `SELECT CONCAT(employee.last_name, ', ', employee.first_name) AS Name FROM employee`;
+    const sql = `SELECT CONCAT(employee.last_name, ', ', employee.first_name) AS Name, employee.id as ID FROM employee`;
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -61,8 +61,11 @@ async function employeeList() {
     connection.end()
     let array = [];
     rows.forEach(element => {
-        array.push(element.Name)
+        const name = element.Name;
+        const id = element.ID;
+        array.push({ name: name, value: id })
     });
+
     return array;
 };
 
@@ -123,7 +126,7 @@ async function employeeDeparmentSearch(department) {
 
 async function roleList() {
     const mysql = require('mysql2/promise');
-    const sql = `SELECT role.title AS Role FROM role`;
+    const sql = `SELECT role.title AS Role, role.id AS ID FROM role`;
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -136,7 +139,9 @@ async function roleList() {
     connection.end()
     let array = [];
     rows.forEach(element => {
-        array.push(element.Role)
+        const role = element.Role;
+        const id = element.ID;
+        array.push({ name: role, value: id })
     });
 
     return array;
