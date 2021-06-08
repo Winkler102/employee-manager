@@ -61,10 +61,14 @@ const handleSelection = function (menu) {
             });
             break;
         case 'Add a department':
-            console.log('5');
+            addDepartment().then(() => {
+                setTimeout(startMenu, 50);
+            });
             break;
         case 'Add a role':
-            console.log('6');
+            addRole().then(() => {
+                setTimeout(startMenu, 50);
+            });
             break;
         case 'Add an employee':
             console.log('7');

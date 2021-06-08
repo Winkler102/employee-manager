@@ -84,7 +84,7 @@ async function employeeManagerSearch(manager) {
 
 async function departmentList() {
     const mysql = require('mysql2/promise');
-    const sql = `SELECT department.name AS Department FROM department`;
+    const sql = `SELECT department.name AS Department, department.id AS ID FROM department`;
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',
@@ -97,7 +97,9 @@ async function departmentList() {
     connection.end()
     let array = [];
     rows.forEach(element => {
-        array.push(element.Department)
+        const department = element.Department;
+        const id = element.ID;
+        array.push({ name: department, value: id })
     });
 
     return array;

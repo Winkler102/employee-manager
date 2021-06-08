@@ -43,11 +43,15 @@ const searchEmployee = function () {
 const searchDepartment = function () {
     return departmentList()
         .then(array => {
+            const options = [];
+            array.forEach(element => {
+                options.push(element.name);
+            });
             return inquirer.prompt({
                 type: 'list',
                 name: 'searchDeparment',
                 message: 'Select a department:',
-                choices: array
+                choices: options
             });
         }).then(answer => {
             employeeDeparmentSearch(answer.searchDeparment)

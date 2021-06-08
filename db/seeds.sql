@@ -1,15 +1,15 @@
-INSERT INTO department (id, name)
+INSERT INTO department (name)
 VALUES
-    (5, 'marketing'),
-    (6, 'farting');
+    ('marketing'),
+    ('R&D');
 
-INSERT INTO role (id, title, salary, department_id)
+INSERT INTO role (title, salary, department_id)
 VALUES
-    (1, 'Manager', 1.01, 6),
-    (2, 'Tacolord', 10.01, 5);
+    ('Manager', 1.01, 1),
+    ('Developer', 10.01, 2);
 
-INSERT INTO employee (id, first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
-    (321, 'John', 'Doe', 1, NULL),
-    (123, 'Lawn', 'Joe', 2, 321),
-    (456, 'Mawn', 'Moe', 1, 123);
+    ('John', 'Doe', 1, 1),
+    ('Lawn', 'Joe', 2, 1),
+    ('Mawn', 'Moe', 1, 2);

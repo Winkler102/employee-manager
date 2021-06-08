@@ -1,36 +1,46 @@
 const { registerPrompt } = require('inquirer');
 const inquirer = require('inquirer');
+const { addDepartmentdb, addRoledb, addEmployeedb } = require('./addDatabase')
+const { employeeList, roleList, departmentList } = require('./viewDatabase')
 
 const addDepartment = function () {
     return inquirer.prompt({
         type: 'input',
         name: 'name',
         message: 'What is the name of the new department?'
+    }).then(answers => {
+        addDepartmentdb(answers);
     });
 };
 
-const addRole = function (departmentArray) {
-    return inquirer.prompt([
-        {
-            type: 'input',
-            name: 'name',
-            message: 'What is the name of the new role?'
-        },
-        {
-            type: 'number',
-            name: 'salary',
-            message: "What is the role's salary?"
-        },
-        {
-            type: 'list',
-            name: 'department',
-            message: "Which department is the role a part of?",
-            choices: departmentArray
-        }
-    ]);
+const addRole = function () {
+    return departmentList()
+        .then(array => {
+            return inquirer.prompt([
+                {
+                    type: 'input',
+                    name: 'name',
+                    message: 'What is the name of the new role?'
+                },
+                {
+                    type: 'number',
+                    name: 'salary',
+                    message: "What is the role's salary?"
+                },
+                {
+                    type: 'list',
+                    name: 'department',
+                    message: "Which department is the role a part of?",
+                    choices: array
+                }
+            ]);
+        })
+        .then(answers => {
+            addRoledb(answers)
+        });
 };
 
-const addEmployee = function (roleArray, employeeArray) {
+const addEmployee = function () {
     return inquirer.prompt([
         {
             type: 'input',
