@@ -3,7 +3,7 @@ const { mainMenu, searchEmployee, searchDepartment, searchRole, searchManager, d
 const { addDepartment, addRole, addEmployee } = require('./utils/addprompts');
 const { updateRole, updateManager } = require('./utils/updateprompts');
 const { deleteDepartment, deleteRole, deleteEmployee } = require('./utils/deleteprompts');
-const { viewDepartments, viewRoles, viewEmployees, budget } = require('./utils/viewDatabase');
+const { viewDepartments, viewRoles, viewEmployees } = require('./utils/viewDatabase');
 
 const handleSelection = function (menu) {
     switch (menu.selection) {
@@ -86,13 +86,19 @@ const handleSelection = function (menu) {
             });
             break;
         case 'Delete a department':
-            console.log('10');
+            deleteDepartment().then(() => {
+                setTimeout(startMenu, 50);
+            });
             break;
         case 'Delete a role':
-            console.log('11');
+            deleteRole().then(() => {
+                setTimeout(startMenu, 50);
+            });
             break;
         case 'Delete an employee':
-            console.log('12');
+            deleteEmployee().then(() => {
+                setTimeout(startMenu, 50);
+            });
             break;
         default:
             console.log('Goodnight');

@@ -165,7 +165,7 @@ async function employeeRoleSearch(role) {
 
 async function budget(department) {
     const mysql = require('mysql2/promise');
-    const sql = `SELECT SUM(role.salary) AS Budget from employee JOIN role ON employee.role_id=role.id JOIN department ON role.department_id=department.id WHERE department.name=?`;
+    const sql = `SELECT SUM(role.salary) AS Budget from employee JOIN role ON employee.role_id=role.id JOIN department ON role.department_id=department.id WHERE department.id=?`;
     const connection = await mysql.createConnection({
         host: 'localhost',
         user: 'root',

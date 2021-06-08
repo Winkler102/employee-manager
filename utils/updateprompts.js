@@ -33,7 +33,6 @@ const updateRole = function () {
             ]);
         })
         .then(answers => {
-            console.log(answers);
             updateEmployeeRoledb(answers)
         });
 };
