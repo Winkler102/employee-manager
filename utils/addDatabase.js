@@ -15,7 +15,6 @@ async function addDepartmentdb(departmentObj) {
 };
 
 async function addRoledb(roleObj) {
-    console.log(roleObj);
     const mysql = require('mysql2/promise');
     const sql = `INSERT INTO role (title, salary, department_id) VALUES ('${roleObj.name}', ${roleObj.salary}, ${roleObj.department})`;
     const connection = await mysql.createConnection({

@@ -4,7 +4,7 @@
 
 A database manager that allows you to store data on Employees, Roles and Deparments.
 
-![A screenshot of the Main Menu](images\screenshot.PNG)
+![A screenshot of the Main Menu](./images/screenshot.PNG)
 
 ## Table of Contents (Optional)
 
@@ -28,7 +28,7 @@ If your README is very long, add a table of contents to make it easy for users t
 1. open command prompt to root file
 2. Run node app.js
 
-[]()
+[Example Video](https://youtu.be/TyvDLmWAeZQ)
 
 
 ## License

@@ -1,6 +1,6 @@
 INSERT INTO department (name)
 VALUES
-    ('marketing'),
+    ('Marketing'),
     ('R&D');
 
 INSERT INTO role (title, salary, department_id)
