@@ -4,6 +4,7 @@
 
 A database manager that allows you to store data on Employees, Roles and Deparments.
 
+![A screenshot of the Main Menu](images\screenshot.PNG)
 
 ## Table of Contents (Optional)
 
