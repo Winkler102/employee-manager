@@ -106,9 +106,19 @@ const handleSelection = function (menu) {
     }
 };
 
+const welcome = function () {
+console.log('===============');
+console.log('|   Welcome   |');
+console.log('|     to      |');
+console.log('|  Employee   |');
+console.log('|   Manager   |');
+console.log('===============');
+};
+
 const startMenu = function () {
     mainMenu()
         .then(handleSelection);
 };
 
+welcome();
 startMenu();
