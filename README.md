@@ -17,7 +17,7 @@ If your README is very long, add a table of contents to make it easy for users t
 
 ## Installation
 
-1. Clone Repo
+1. Clone repository
 2. Extract From zip
 3. Run npm Install
 
@@ -25,7 +25,7 @@ If your README is very long, add a table of contents to make it easy for users t
 
 ## Usage 
 
-1. open command prompt to root file
+1. Open command prompt to root file
 2. Run node app.js
 
 [Example Video](https://youtu.be/TyvDLmWAeZQ)
